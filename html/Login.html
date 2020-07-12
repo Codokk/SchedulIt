@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://bootswatch.com/4/materia/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/Login.css">
+    <title>Login</title>
+</head>
+
+<body id="main">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <i class="fas fa-user-circle"></i>
+            </div>
+
+            <!-- Login Form -->
+            <form>
+                <input type="text" id="username" class="fadeIn second" name="login" placeholder="login">
+                <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
+                <input type="button" onClick="tryLogin()" id="LoginButton" class="fadeIn fourth" value="Log In">
+            </form>
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <a class="underlineHover" href="#">Forgot Password?</a>
+            </div>
+
+        </div>
+    </div>
+    <div id="SecuritySettings" onClick="OpenSecuritySettings()">
+        <i class="fas fa-lock"></i>
+    </div>
+</body>
+<script src='../js/Login.js'></script>
+</html>

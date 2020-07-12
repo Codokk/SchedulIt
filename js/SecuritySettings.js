@@ -34,7 +34,6 @@ function updateSettings() {
         if (ipc.sendSync('UpdateDatabaseSettings', dbobj)) {
             //Ask if they want to format the database
             if (confirm("Connection Successful, Would you like to format this database?")) {
-                fs.read
                 let testConn = mysql.createConnection(dbobj);
                 testConn.connect((err) => {
                     if (err) throw err;
@@ -46,6 +45,7 @@ function updateSettings() {
                             console.log(arr[i]);
                             testConn.query(arr[i], (err, res) => {
                                 if (err) throw err;
+                                alert(JSON.stringify(res));
                                 console.log(res);
                             })
                         }

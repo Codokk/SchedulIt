@@ -107,6 +107,38 @@ ipcMain.on('CloseWindow', (e, args) => {
     Windows[args].close();
     Windows[args] = null;
 })
+ipcMain.on('LoadCalendarSettigs', (e, args) => {
+    let con;
+    try {
+        con = getDatabase();
+    } catch {
+        e.returnValue = {success: false};
+        return;
+    }
+    con.connect((err) => {
+        if (err) {
+            e.returnValue = 'false';
+            throw err;
+            return;
+        }
+        con.query("Select * From `settings`", (err, res) => {
+            if(err) {
+                e.returnValue = {success: false};
+                throw err;
+                return;
+            }
+            else {
+                let ret = {
+                    success: true,
+                    daystoshow: res.daystoshow,
+                    dayoffset: res.dayoffset
+                };
+                e.returnValue = ret;
+                return;
+            }
+        }) 
+    })
+})
 ipcMain.on('MakeTopWindow', (e, args) => {
     Windows[args].show();
 })

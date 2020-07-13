@@ -1,0 +1,18 @@
+#Calendar > tbody > tr > td {
+    text-align: center;
+    vertical-align: center;
+    transition: all .3s ease;
+}
+#Calendar > tr > td:nth-child(1) {
+    text-align: left;
+}
+#Calendar > tbody > tr > td:hover {
+    background: grey;
+    transition: all .3s ease;
+}
+#Calendar > tbody > tr > td:nth-child(1):hover {
+    background: inherit;
+}
+#Calendar > tbody > tr > td.table-success:hover {
+    background-color: green;;
+}

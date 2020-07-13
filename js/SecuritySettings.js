@@ -40,21 +40,14 @@ function updateSettings() {
                     text = fs.readFileSync(path.join(__dirname, "../docs/formatDatabase.sql")).toString();
                     let arr = text.split(";");
                     console.log(arr);
-                    new Promise((res, rej) => {
-                        for (let i = 0; i < arr.length - 1; i++) {
-                            console.log(arr[i]);
-                            testConn.query(arr[i], (err, res) => {
-                                if (err) throw err;
-                                alert(JSON.stringify(res));
-                                console.log(res);
-                            })
-                        }
-                        res(true);
-                    }).then(() => {
-                        alert("Done");
-                        ipc.send('MakeTopWindow', 'Login');
-                        ipc.send('CloseWindow', 'SecuritySettings');
-                    })
+                    for(let i = 0; i < arr.length - 1; i++){
+                        console.log(arr[i]);
+                        testConn.query(arr[i], (err, res) => {
+                            if (err) alert(err + "ERROR");
+                            alert(JSON.stringify(res));
+                            console.log(res);
+                        })
+                    }
                 })
             }
         } else {

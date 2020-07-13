@@ -9,6 +9,7 @@ const GlobalUser = {};
 
 
 const pek = "P1nk@ppl3P@ssw0rd";
+const MS = 86400000;
 let Windows = {count: 0};
 
 //Create and set the default menu
@@ -128,10 +129,14 @@ ipcMain.on('LoadCalendarSettigs', (e, args) => {
                 return;
             }
             else {
+                res = res[0];
                 let ret = {
                     success: true,
                     daystoshow: res.daystoshow,
-                    dayoffset: res.dayoffset
+                    dayoffset: res.dayoffset,
+                    interval: res.interval,
+                    open: res.open,
+                    close: res.close
                 };
                 e.returnValue = ret;
                 return;
@@ -141,6 +146,19 @@ ipcMain.on('LoadCalendarSettigs', (e, args) => {
 })
 ipcMain.on('MakeTopWindow', (e, args) => {
     Windows[args].show();
+})
+ipcMain.on("OpenNewTicket", (e, args) =>{
+    console.log(args);
+    let timeArray = args.timestring.split("|");
+    let StartDate = Date.now();
+    StartDate += (MS * args.settings.daysoffset);
+
+    StartDate -= ((MS/24) * 4); //est
+
+    StartDate -= (StartDate % MS);
+    //Timezone fix
+    StartDate -= 
+    console.log(new Date(StartDate));
 })
 ipcMain.on("TryLogin", (e, args) => {
     let con;
